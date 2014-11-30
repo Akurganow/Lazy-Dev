@@ -1,0 +1,17 @@
+{
+  "name": "LazyDev",
+  "version": "0.1",
+  "homepage": "http://akurganow.ru/lazy-dev",
+  "authors": [
+    "Alexander Kurganow <me@akurganow.ru>"
+  ],
+  "description": "Collection of scss mixins for lazy developers ;)",
+  "main": "lazy-dev.scss",
+  "keywords": [
+    "sass",
+    "scss",
+    "mixin",
+    "mixins"
+  ],
+  "license": "MIT"
+}

@@ -1,0 +1,39 @@
+/* Clearfix */
+
+%clearfix {
+  *zoom: 1;
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+/* Media Queries */
+
+@mixin mq($width, $ratio) {
+  @media 
+  only screen and (max-width: $width) and  (min--moz-device-pixel-ratio: $ratio),
+  only screen and (max-width: $width) and  (-webkit-min-device-pixel-ratio: $ratio),
+  only screen and (max-width: $width) and  (min-device-pixel-ratio: $ratio) {
+    @content;
+  }
+}
+
+@mixin mq-w($width) {
+  @media only screen and (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin mq-r($ratio) {
+  @media 
+    only screen and (-webkit-min-device-pixel-ratio: $ratio),
+    only screen and (min--moz-device-pixel-ratio: $ratio),
+    only screen and (-o-min-device-pixel-ratio: $ratio),
+    only screen and (min-device-pixel-ratio: $ratio) {
+    @content;
+  }
+}
