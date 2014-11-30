@@ -1,4 +1,4 @@
-# [Collection of SCSS Mixins for lazy developers.](http://akurganow.ru/lazy-dev)
+# [Collection of SCSS Mixins for lazy developers](http://akurganow.ru/lazy-dev)
 
 ### Installation
 
