@@ -1,6 +1,4 @@
-scss/
-css/
-js/
-gulpfile.coffee
+*.coffee
 *.html
 *.DS_Store
+node_modules/

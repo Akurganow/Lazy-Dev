@@ -1,0 +1,90 @@
+@import 'lazy-dev';
+
+$color: blue;
+
+//Test classes
+
+.ha {
+  @include ha;
+}
+
+.clearfix {
+  width: 960px;
+  @include clearfix;
+}
+
+@include mq(960, 2) {
+  .media-class {
+    width: 960px;
+  }
+}
+
+@include mq-w(960) {
+  .media-class-width {
+    width: 960px;
+  }
+}
+
+@include mq-r(2) {
+  .media-class-ratio {
+    width: 960px;
+  }
+}
+
+//Example classes
+
+.row {
+  display: block;
+  @include clearfix;
+}
+.row + .row {
+  padding-top: 25px;
+}
+
+.scale-down {
+  background-color: $color;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  @include scale(1s, hover, .5);
+}
+
+.scale-up {
+  background-color: $color;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  @include scale(1s, hover, 1.5);
+}
+
+.slide-in-down {
+  background-color: $color;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  @include slide-in-down(3s);
+}
+
+.slide-in-up {
+  background-color: $color;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  @include slide-in-up(3s);
+}
+
+.slide-in-right {
+  background-color: $color;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  @include slide-in-right(3s);
+}
+
+.slide-in-left {
+  background-color: $color;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  @include slide-in-left(3s);
+}

@@ -1,0 +1,34 @@
+{
+  "name": "LazyDev",
+  "version": "1.0.0",
+  "description": "Collection of scss mixins for lazy developers ;)",
+  "main": "gulpfile.coffee",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Akurganow/Lazy-Dev.git"
+  },
+  "keywords": [
+    "sass",
+    "scss",
+    "mixin",
+    "mixins"
+  ],
+  "author": "Alexander Kurganov <me@akurganow.ru>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Akurganow/Lazy-Dev/issues"
+  },
+  "homepage": "https://github.com/Akurganow/Lazy-Dev",
+  "devDependencies": {
+    "coffee-script": "^1.8.0",
+    "gulp": "^3.8.10",
+    "gulp-autoprefixer": "^2.0.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-load-plugins": "^0.7.1",
+    "gulp-sass": "^1.1.0",
+    "gulp-sourcemaps": "^1.2.8"
+  }
+}

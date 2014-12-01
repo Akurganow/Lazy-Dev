@@ -1,6 +1,6 @@
-/* Clearfix */
+// Clearfix
 
-%clearfix {
+@mixin clearfix {
   &:before, &:after {
     display: table;
 
@@ -12,12 +12,11 @@
   }
 }
 
-/* Media Queries */
+// Media Queries
 
 @mixin mq($width, $ratio) {
   @media
   only screen and (max-width: $width) and  (-webkit-min-device-pixel-ratio: $ratio),
-  only screen and (max-width: $width) and  (min--moz-device-pixel-ratio: $ratio),
   only screen and (max-width: $width) and  (min-device-pixel-ratio: $ratio) {
     @content;
   }
@@ -32,8 +31,264 @@
 @mixin mq-r($ratio) {
   @media
   only screen and (-webkit-min-device-pixel-ratio: $ratio),
-  only screen and (min--moz-device-pixel-ratio: $ratio),
   only screen and (min-device-pixel-ratio: $ratio) {
     @content;
+  }
+}
+
+// Hardware acceleration
+
+@mixin ha {
+  transform: translate3d(0, 0, 0);
+}
+
+//Easings from http://easings.net/
+//Thanks for Andrey Sitnik (http://github.com/ai)
+@mixin transition($time, $easing: linear, $delay: 0) {
+
+  //Sine
+  @if $easing == ease-in-sine {
+    $e: cubic-bezier(0.47, 0, 0.745, 0.715);
+  }
+  @else if $easing == ease-out-sine {
+    $e: cubic-bezier(0.39, 0.575, 0.565, 1);
+  }
+  @else if $easing == ease-in-out-sine {
+    $e: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  }
+
+  //Quad
+  @else if $easing == ease-in-quad {
+    $e: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  }
+  @else if $easing == ease-out-quad {
+    $e: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  @else if $easing == ease-in-out-quad {
+    $e: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  }
+
+  //Cubic
+  @else if $easing == ease-in-cubic {
+    $e: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  @else if $easing == ease-out-cubic {
+    $e: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  @else if $easing == ease-in-out-cubic {
+    $e: cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+
+  //Quart
+  @else if $easing == ease-in-quart {
+    $e: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+  }
+  @else if $easing == ease-out-quart {
+    $e: cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  @else if $easing == ease-in-out-quart {
+    $e: cubic-bezier(0.77, 0, 0.175, 1);
+  }
+
+  //Quint
+  @else if $easing == ease-in-quint {
+    $e: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+  }
+  @else if $easing == ease-out-quint {
+    $e: cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  @else if $easing == ease-in-out-quint {
+    $e: cubic-bezier(0.86, 0, 0.07, 1);
+  }
+
+  //Expo
+  @else if $easing == ease-in-expo {
+    $e: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  }
+  @else if $easing == ease-out-expo {
+    $e: cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  @else if $easing == ease-in-out-expo {
+    $e: cubic-bezier(1, 0, 0, 1);
+  }
+
+  //Circ
+  @else if $easing == ease-in-circ {
+    $e: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+  }
+  @else if $easing == ease-out-circ {
+    $e: cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  @else if $easing == ease-in-out-circ {
+    $e: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  }
+
+  //Back
+  @else if $easing == ease-in-back {
+    $e: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  }
+  @else if $easing == ease-out-back {
+    $e: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  @else if $easing == ease-in-out-back {
+    $e: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  @else {
+    $e: $easing;
+  }
+
+  transition: transform $time $delay $e;
+}
+
+//Animations
+
+//scale-down
+@mixin scale($time, $action: null, $scale: .95, $easing: linear, $delay: 0) {
+  @include ha;
+  @if $action == null {
+    transform: scale($scale);
+    @include transition($time, $easing, $delay);
+  }
+  @else {
+    transform: scale(1);
+    &:#{$action} {
+      transform: scale($scale);
+      @include transition($time, $easing, $delay);
+    }
+  }
+}
+
+//fade-in
+@mixin fade-in($time, $action: null, $easing: linear, $delay: 0) {
+  @include ha;
+  @if $action == null {
+    animation: fade-in $time $delay $easing;
+  }
+  @else {
+    &:#{$action} {
+      animation: fade-in $time $delay $easing;
+    }
+  }
+}
+@keyframes fade-in {
+  0% { opacity: 0; }
+  to { opacity: 1; };
+}
+
+//fade-out
+@mixin fade-out($time, $action: null, $easing: linear, $delay: 0) {
+  @include ha;
+  @if $action == null {
+    animation: fade-out $time $delay $easing;
+  }
+  @else {
+    &:#{$action} {
+      animation: fade-out $time $delay $easing;
+    }
+  }
+}
+@keyframes fade-out {
+  0% { opacity: 1; }
+  to { opacity: 0; };
+}
+
+//slide-in-down
+@mixin slide-in-down($time: 0, $action: null, $easing: linear, $delay: 0) {
+  @include ha;
+  @if $action == null {
+    animation: slide-in-down $time $delay $easing;
+  }
+  @else {
+    &:#{$action} {
+      animation: slide-in-down $time $delay $easing;
+    }
+  }
+}
+@keyframes slide-in-down {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  75% {
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+//slide-in-up
+@mixin slide-in-up($time, $action: null, $easing: linear, $delay: 0) {
+  @include ha;
+  @if $action == null {
+    animation: slide-in-up $time $delay $easing;
+  }
+  @else {
+    &:#{$action} {
+      animation: slide-in-up $time $delay $easing;
+    }
+  }
+}
+@keyframes slide-in-up {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  75% {
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+//slide-in-right
+@mixin slide-in-right($time, $action: null, $easing: linear, $delay: 0) {
+  @include ha;
+  @if $action == null {
+    animation: slide-in-right $time $delay $easing;
+  }
+  @else {
+    &:#{$action} {
+      animation: slide-in-right $time $delay $easing;
+    }
+  }
+}
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  75% {
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+//slide-in-left
+@mixin slide-in-left($time, $action: null, $easing: linear, $delay: 0) {
+  @include ha;
+  @if $action == null {
+    animation: slide-in-left $time $delay $easing;
+  }
+  @else {
+    &:#{$action} {
+      animation: slide-in-left $time $delay $easing;
+    }
+  }
+}
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  75% {
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 1;
   }
 }
