@@ -11,9 +11,15 @@ $ bower install lazy-dev
 ### How to use
 
 ```
-@include mq(960px, 2);
+@include mq(960px, 2) {
+    .some-class {
+        width: 960px;
+    }
+};
 
-%clearfix;
+.row {
+    @include clearfix;
+}
 ```
 
 --------
@@ -21,3 +27,17 @@ $ bower install lazy-dev
 **Mixins:**
 - Clearfix
 - Media Queries
+- Transition
+- Animations
+    + Scale
+    + Fade in
+    + Fade out
+    + Slide in down
+    + Slide in up
+    + Slide in right
+    + Slide in left
+
+**ToDo**
+- Slide out animations
+- Homepage
+- Examples
