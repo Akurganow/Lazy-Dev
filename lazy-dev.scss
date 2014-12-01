@@ -6,7 +6,6 @@
 
     content: ' ';
   }
-  
   &:after {
     clear: both;
   }
@@ -39,13 +38,13 @@
 // Hardware acceleration
 
 @mixin ha {
-  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
 }
 
 //Easings from http://easings.net/
 //Thanks for Andrey Sitnik (http://github.com/ai)
 @mixin transition($time, $easing: linear, $delay: 0) {
-
   //Sine
   @if $easing == ease-in-sine {
     $e: cubic-bezier(0.47, 0, 0.745, 0.715);
@@ -56,7 +55,6 @@
   @else if $easing == ease-in-out-sine {
     $e: cubic-bezier(0.445, 0.05, 0.55, 0.95);
   }
-
   //Quad
   @else if $easing == ease-in-quad {
     $e: cubic-bezier(0.55, 0.085, 0.68, 0.53);
@@ -67,7 +65,6 @@
   @else if $easing == ease-in-out-quad {
     $e: cubic-bezier(0.455, 0.03, 0.515, 0.955);
   }
-
   //Cubic
   @else if $easing == ease-in-cubic {
     $e: cubic-bezier(0.55, 0.055, 0.675, 0.19);
@@ -78,7 +75,6 @@
   @else if $easing == ease-in-out-cubic {
     $e: cubic-bezier(0.645, 0.045, 0.355, 1);
   }
-
   //Quart
   @else if $easing == ease-in-quart {
     $e: cubic-bezier(0.895, 0.03, 0.685, 0.22);
@@ -89,7 +85,6 @@
   @else if $easing == ease-in-out-quart {
     $e: cubic-bezier(0.77, 0, 0.175, 1);
   }
-
   //Quint
   @else if $easing == ease-in-quint {
     $e: cubic-bezier(0.755, 0.05, 0.855, 0.06);
@@ -100,7 +95,6 @@
   @else if $easing == ease-in-out-quint {
     $e: cubic-bezier(0.86, 0, 0.07, 1);
   }
-
   //Expo
   @else if $easing == ease-in-expo {
     $e: cubic-bezier(0.95, 0.05, 0.795, 0.035);
@@ -111,7 +105,6 @@
   @else if $easing == ease-in-out-expo {
     $e: cubic-bezier(1, 0, 0, 1);
   }
-
   //Circ
   @else if $easing == ease-in-circ {
     $e: cubic-bezier(0.6, 0.04, 0.98, 0.335);
@@ -122,7 +115,6 @@
   @else if $easing == ease-in-out-circ {
     $e: cubic-bezier(0.785, 0.135, 0.15, 0.86);
   }
-
   //Back
   @else if $easing == ease-in-back {
     $e: cubic-bezier(0.6, -0.28, 0.735, 0.045);
@@ -133,27 +125,32 @@
   @else if $easing == ease-in-out-back {
     $e: cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
-
   @else {
     $e: $easing;
   }
-
-  transition: transform $time $delay $e;
+  
+  transition: -webkit-transform($time $delay $e);
+  transition: transform($time $delay $e);
 }
 
 //Animations
 
 //scale-down
-@mixin scale($time, $action: null, $scale: .95, $easing: linear, $delay: 0) {
+@mixin scale($time, $action: null, $scale: 0.95, $easing: linear, $delay: 0) {
   @include ha;
   @if $action == null {
-    transform: scale($scale);
+    -webkit-transform: scale($scale);
+            transform: scale($scale);
+
     @include transition($time, $easing, $delay);
   }
   @else {
-    transform: scale(1);
+    -webkit-transform: scale(1);
+            transform: scale(1);
     &:#{$action} {
-      transform: scale($scale);
+      -webkit-transform: scale($scale);
+              transform: scale($scale);
+
       @include transition($time, $easing, $delay);
     }
   }
@@ -163,55 +160,103 @@
 @mixin fade-in($time, $action: null, $easing: linear, $delay: 0) {
   @include ha;
   @if $action == null {
-    animation: fade-in $time $delay $easing;
+    -webkit-animation: fade-in $time $delay $easing;
+            animation: fade-in $time $delay $easing;
   }
   @else {
     &:#{$action} {
-      animation: fade-in $time $delay $easing;
+      -webkit-animation: fade-in $time $delay $easing;
+              animation: fade-in $time $delay $easing;
     }
   }
 }
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  };
+}
 @keyframes fade-in {
-  0% { opacity: 0; }
-  to { opacity: 1; };
+  0% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  };
 }
 
 //fade-out
 @mixin fade-out($time, $action: null, $easing: linear, $delay: 0) {
   @include ha;
   @if $action == null {
-    animation: fade-out $time $delay $easing;
+    -webkit-animation: fade-out $time $delay $easing;
+            animation: fade-out $time $delay $easing;
   }
   @else {
     &:#{$action} {
-      animation: fade-out $time $delay $easing;
+      -webkit-animation: fade-out $time $delay $easing;
+              animation: fade-out $time $delay $easing;
     }
   }
 }
+@-webkit-keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  };
+}
 @keyframes fade-out {
-  0% { opacity: 1; }
-  to { opacity: 0; };
+  0% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  };
 }
 
 //slide-in-down
 @mixin slide-in-down($time: 0, $action: null, $easing: linear, $delay: 0) {
   @include ha;
   @if $action == null {
-    animation: slide-in-down $time $delay $easing;
+    -webkit-animation: slide-in-down $time $delay $easing;
+            animation: slide-in-down $time $delay $easing;
   }
   @else {
     &:#{$action} {
-      animation: slide-in-down $time $delay $easing;
+      -webkit-animation: slide-in-down $time $delay $easing;
+              animation: slide-in-down $time $delay $easing;
     }
+  }
+}
+@-webkit-keyframes slide-in-down {
+  0% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+
+    opacity: 0;
+  }
+  75% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
   }
 }
 @keyframes slide-in-down {
   0% {
-    transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+
     opacity: 0;
   }
   75% {
-    transform: translateY(0);
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
   }
   100% {
     opacity: 1;
@@ -222,21 +267,41 @@
 @mixin slide-in-up($time, $action: null, $easing: linear, $delay: 0) {
   @include ha;
   @if $action == null {
-    animation: slide-in-up $time $delay $easing;
+    -webkit-animation: slide-in-up $time $delay $easing;
+            animation: slide-in-up $time $delay $easing;
   }
   @else {
     &:#{$action} {
-      animation: slide-in-up $time $delay $easing;
+      -webkit-animation: slide-in-up $time $delay $easing;
+              animation: slide-in-up $time $delay $easing;
     }
+  }
+}
+@-webkit-keyframes slide-in-up {
+  0% {
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+
+    opacity: 0;
+  }
+  75% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
   }
 }
 @keyframes slide-in-up {
   0% {
-    transform: translateY(100%);
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+
     opacity: 0;
   }
   75% {
-    transform: translateY(0);
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
   }
   100% {
     opacity: 1;
@@ -247,21 +312,41 @@
 @mixin slide-in-right($time, $action: null, $easing: linear, $delay: 0) {
   @include ha;
   @if $action == null {
-    animation: slide-in-right $time $delay $easing;
+    -webkit-animation: slide-in-right $time $delay $easing;
+            animation: slide-in-right $time $delay $easing;
   }
   @else {
     &:#{$action} {
-      animation: slide-in-right $time $delay $easing;
+      -webkit-animation: slide-in-right $time $delay $easing;
+              animation: slide-in-right $time $delay $easing;
     }
+  }
+}
+@-webkit-keyframes slide-in-right {
+  0% {
+    -webkit-transform: translateX(100px);
+            transform: translateX(100px);
+
+    opacity: 0;
+  }
+  75% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    opacity: 1;
   }
 }
 @keyframes slide-in-right {
   0% {
-    transform: translateX(100px);
+    -webkit-transform: translateX(100px);
+            transform: translateX(100px);
+
     opacity: 0;
   }
   75% {
-    transform: translateX(0);
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
   }
   100% {
     opacity: 1;
@@ -272,21 +357,41 @@
 @mixin slide-in-left($time, $action: null, $easing: linear, $delay: 0) {
   @include ha;
   @if $action == null {
-    animation: slide-in-left $time $delay $easing;
+    -webkit-animation: slide-in-left $time $delay $easing;
+            animation: slide-in-left $time $delay $easing;
   }
   @else {
     &:#{$action} {
-      animation: slide-in-left $time $delay $easing;
+      -webkit-animation: slide-in-left $time $delay $easing;
+              animation: slide-in-left $time $delay $easing;
     }
+  }
+}
+@-webkit-keyframes slide-in-left {
+  0% {
+    -webkit-transform: translateX(-100px);
+            transform: translateX(-100px);
+
+    opacity: 0;
+  }
+  75% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    opacity: 1;
   }
 }
 @keyframes slide-in-left {
   0% {
-    transform: translateX(-100px);
+    -webkit-transform: translateX(-100px);
+            transform: translateX(-100px);
+
     opacity: 0;
   }
   75% {
-    transform: translateX(0);
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
   }
   100% {
     opacity: 1;
