@@ -1,7 +1,7 @@
 *.coffee
 *.js
 *.css
+*.scss
 *.html
 *.DS_Store
-style.scss
 node_modules/

@@ -1,25 +1,5 @@
-//Copyright © 2014
-//Author: Alexander Kurganov (http://akurganow.ru)
-//License: MIT
-//Version: 0.2
-//Description: Collection of SCSS Mixins for lazy developers
-
-//Clearfix
-
-@mixin clearfix {
-  *zoom: 1;
-  &:before, &:after {
-    display: table;
-
-    content: ' ';
-  }
-
-  &:after {
-    clear: both;
-  }
-}
-
-//Media Queries
+//Generates media queries
+//Usage @include mq(960px, 2){ Put styles here }
 
 @mixin mq($width, $ratio) {
   @media
@@ -43,7 +23,24 @@
   }
 }
 
-//Hardware acceleration
+//Generates clearfix hack
+//Usage @include clearfix;
+
+@mixin clearfix {
+  *zoom: 1;
+  &:before, &:after {
+    display: table;
+
+    content: ' ';
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+//Generate hardware acceleration hack
+//Usage @include ha;
 
 @mixin ha {
   -webkit-transform: translate3d(0, 0, 0);
