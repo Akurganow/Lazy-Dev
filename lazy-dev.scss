@@ -1,12 +1,18 @@
+/*
+Copyright 2014 Alexander Kurganov
+Licensed under the Apache License, Version 2.0
+*/
+
 // Clearfix
 
 @mixin clearfix {
+  *zoom: 1;
   &:before, &:after {
     display: table;
 
     content: ' ';
   }
-  
+
   &:after {
     clear: both;
   }
