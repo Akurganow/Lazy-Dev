@@ -39,6 +39,18 @@
   }
 }
 
+//Generates columns
+//Usage @include columns(class, 3);
+
+@mixin columns($class: col, $count: 12) {
+  $i: 1;
+  @while $i <= $count {
+    .#{$class}#{$i} {
+      width: 100% / $count * $i;
+    }
+    $i: $i + 1;
+  }
+}
 //Generate hardware acceleration hack
 //Usage @include ha;
 
