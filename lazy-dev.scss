@@ -1,9 +1,10 @@
-/*
-Copyright 2014 Alexander Kurganov
-Licensed under the Apache License, Version 2.0
-*/
+//Copyright © 2014
+//Author: Alexander Kurganov (http://akurganow.ru)
+//License: MIT
+//Version: 0.2
+//Description: Collection of SCSS Mixins for lazy developers
 
-// Clearfix
+//Clearfix
 
 @mixin clearfix {
   *zoom: 1;
@@ -18,7 +19,7 @@ Licensed under the Apache License, Version 2.0
   }
 }
 
-// Media Queries
+//Media Queries
 
 @mixin mq($width, $ratio) {
   @media
@@ -42,7 +43,7 @@ Licensed under the Apache License, Version 2.0
   }
 }
 
-// Hardware acceleration
+//Hardware acceleration
 
 @mixin ha {
   -webkit-transform: translate3d(0, 0, 0);
@@ -52,6 +53,7 @@ Licensed under the Apache License, Version 2.0
 //Easings from http://easings.net/
 //Thanks for Andrey Sitnik (http://github.com/ai)
 @mixin transition($time, $easing: linear, $delay: 0) {
+
   //Sine
   @if $easing == ease-in-sine {
     $e: cubic-bezier(0.47, 0, 0.745, 0.715);
@@ -62,6 +64,7 @@ Licensed under the Apache License, Version 2.0
   @else if $easing == ease-in-out-sine {
     $e: cubic-bezier(0.445, 0.05, 0.55, 0.95);
   }
+
   //Quad
   @else if $easing == ease-in-quad {
     $e: cubic-bezier(0.55, 0.085, 0.68, 0.53);
@@ -72,6 +75,7 @@ Licensed under the Apache License, Version 2.0
   @else if $easing == ease-in-out-quad {
     $e: cubic-bezier(0.455, 0.03, 0.515, 0.955);
   }
+
   //Cubic
   @else if $easing == ease-in-cubic {
     $e: cubic-bezier(0.55, 0.055, 0.675, 0.19);
@@ -82,6 +86,7 @@ Licensed under the Apache License, Version 2.0
   @else if $easing == ease-in-out-cubic {
     $e: cubic-bezier(0.645, 0.045, 0.355, 1);
   }
+
   //Quart
   @else if $easing == ease-in-quart {
     $e: cubic-bezier(0.895, 0.03, 0.685, 0.22);
@@ -92,6 +97,7 @@ Licensed under the Apache License, Version 2.0
   @else if $easing == ease-in-out-quart {
     $e: cubic-bezier(0.77, 0, 0.175, 1);
   }
+
   //Quint
   @else if $easing == ease-in-quint {
     $e: cubic-bezier(0.755, 0.05, 0.855, 0.06);
@@ -102,6 +108,7 @@ Licensed under the Apache License, Version 2.0
   @else if $easing == ease-in-out-quint {
     $e: cubic-bezier(0.86, 0, 0.07, 1);
   }
+
   //Expo
   @else if $easing == ease-in-expo {
     $e: cubic-bezier(0.95, 0.05, 0.795, 0.035);
@@ -112,6 +119,7 @@ Licensed under the Apache License, Version 2.0
   @else if $easing == ease-in-out-expo {
     $e: cubic-bezier(1, 0, 0, 1);
   }
+
   //Circ
   @else if $easing == ease-in-circ {
     $e: cubic-bezier(0.6, 0.04, 0.98, 0.335);
@@ -122,6 +130,7 @@ Licensed under the Apache License, Version 2.0
   @else if $easing == ease-in-out-circ {
     $e: cubic-bezier(0.785, 0.135, 0.15, 0.86);
   }
+  
   //Back
   @else if $easing == ease-in-back {
     $e: cubic-bezier(0.6, -0.28, 0.735, 0.045);
