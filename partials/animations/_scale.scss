@@ -1,0 +1,11 @@
+//Generates scale animation
+//Usage @include scale(1s, ease-in-out-sine, hover, 0.5, 0.5s);
+
+@mixin scale($time, $easing: linear, $action: null, $scale: 0.95, $delay: 0) {
+  @include ha;
+  @include transition($time, $easing, $delay);
+  @include action($action) {
+    -webkit-transform: scale($scale);
+            transform: scale($scale);
+  }
+}

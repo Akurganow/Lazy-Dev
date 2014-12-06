@@ -1,0 +1,13 @@
+//Generates action mixin
+//Usage @include action(hover) { ... };
+
+@mixin action($action: null) {
+  @if $action == null {
+    @content;
+  }
+  @else {
+    &:#{$action} {
+      @content;
+    }
+  }
+}
