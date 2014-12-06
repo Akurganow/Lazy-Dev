@@ -41,7 +41,6 @@ $ bower install lazy-dev
 **ToDo**
 
 - [ ] Replace mq with mobile first and desktop first named breakpoints
-- [ ] Columns
 - [ ] Slide out animations
 - [ ] 3d animations
 - [ ] More animations
