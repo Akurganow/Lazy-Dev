@@ -1,9 +1,5 @@
-@import 'animations/*.scss';
-
-//Warning: Using @at-root sass 3.3 syntax libsass does not yet support
-//
-//Generates animations
-//Usage @include scale(1s, ease-in-out-sine, hover, 0.5, 0.5s);
+//Generates action mixin
+//Usage @include action(hover) { ... };
 
 @mixin action($action: null) {
   @if $action == null {
@@ -12,240 +8,6 @@
   @else {
     &:#{$action} {
       @content;
-    }
-  }
-}
-
-//scale-down
-@mixin scale($time, $easing: linear, $action: null, $scale: 0.95, $delay: 0) {
-  @include ha;
-  @include transition($time, $easing, $delay);
-  @include action($action) {
-    -webkit-transform: scale($scale);
-            transform: scale($scale);
-  }
-}
-
-//fade-in
-@mixin fade-in($time, $easing: linear, $action: null, $delay: 0) {
-  @include ha;
-  @include action($action) {
-    -webkit-animation: fade-in $time $delay $easing;
-            animation: fade-in $time $delay $easing;
-  }
-
-  @at-root {
-    @-webkit-keyframes fade-in {
-      0% {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      };
-    }
-    @keyframes fade-in {
-      0% {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      };
-    }
-  }
-}
-
-//fade-out
-@mixin fade-out($time, $easing: linear, $action: null, $delay: 0) {
-  @include ha;
-  @include action($action) {
-    -webkit-animation: fade-out $time $delay $easing;
-            animation: fade-out $time $delay $easing;
-  }
-
-  @at-root {
-    @-webkit-keyframes fade-out {
-      0% {
-        opacity: 1;
-      }
-      to {
-        opacity: 0;
-      };
-    }
-    @keyframes fade-out {
-      0% {
-        opacity: 1;
-      }
-      to {
-        opacity: 0;
-      };
-    }
-  }
-}
-
-//slide-in-down
-@mixin slide-in-down($time: 0, $easing: linear, $action: null, $delay: 0) {
-  @include ha;
-  @include action($action) {
-    -webkit-animation: slide-in-down $time $delay $easing;
-            animation: slide-in-down $time $delay $easing;
-  }
-
-  @at-root {
-    @-webkit-keyframes slide-in-down {
-      0% {
-        -webkit-transform: translateY(-100%);
-                transform: translateY(-100%);
-
-        opacity: 0;
-      }
-      75% {
-        -webkit-transform: translateY(0);
-                transform: translateY(0);
-      }
-      100% {
-        opacity: 1;
-      }
-    }
-    @keyframes slide-in-down {
-      0% {
-        -webkit-transform: translateY(-100%);
-                transform: translateY(-100%);
-
-        opacity: 0;
-      }
-      75% {
-        -webkit-transform: translateY(0);
-                transform: translateY(0);
-      }
-      100% {
-        opacity: 1;
-      }
-    }
-  }
-}
-
-//slide-in-up
-@mixin slide-in-up($time, $easing: linear, $action: null, $delay: 0) {
-  @include ha;
-  @include action($action) {
-    -webkit-animation: slide-in-up $time $delay $easing;
-            animation: slide-in-up $time $delay $easing;
-  }
-
-  @at-root {
-    @-webkit-keyframes slide-in-up {
-      0% {
-        -webkit-transform: translateY(100%);
-                transform: translateY(100%);
-
-        opacity: 0;
-      }
-      75% {
-        -webkit-transform: translateY(0);
-                transform: translateY(0);
-      }
-      100% {
-        opacity: 1;
-      }
-    }
-    @keyframes slide-in-up {
-      0% {
-        -webkit-transform: translateY(100%);
-                transform: translateY(100%);
-
-        opacity: 0;
-      }
-      75% {
-        -webkit-transform: translateY(0);
-                transform: translateY(0);
-      }
-      100% {
-        opacity: 1;
-      }
-    }
-  }
-}
-
-//slide-in-right
-@mixin slide-in-right($time, $easing: linear, $action: null, $delay: 0) {
-  @include ha;
-  @include action($action) {
-    -webkit-animation: slide-in-right $time $delay $easing;
-            animation: slide-in-right $time $delay $easing;
-  }
-
-  @at-root {
-    @-webkit-keyframes slide-in-right {
-      0% {
-        -webkit-transform: translateX(100px);
-                transform: translateX(100px);
-
-        opacity: 0;
-      }
-      75% {
-        -webkit-transform: translateX(0);
-                transform: translateX(0);
-      }
-      100% {
-        opacity: 1;
-      }
-    }
-    @keyframes slide-in-right {
-      0% {
-        -webkit-transform: translateX(100px);
-                transform: translateX(100px);
-
-        opacity: 0;
-      }
-      75% {
-        -webkit-transform: translateX(0);
-                transform: translateX(0);
-      }
-      100% {
-        opacity: 1;
-      }
-    }
-  }
-}
-
-//slide-in-left
-@mixin slide-in-left($time, $easing: linear, $action: null, $delay: 0) {
-  @include ha;
-  @include action($action) {
-    -webkit-animation: slide-in-left $time $delay $easing;
-            animation: slide-in-left $time $delay $easing;
-  }
-
-  @at-root {
-    @-webkit-keyframes slide-in-left {
-      0% {
-        -webkit-transform: translateX(-100px);
-                transform: translateX(-100px);
-
-        opacity: 0;
-      }
-      75% {
-        -webkit-transform: translateX(0);
-                transform: translateX(0);
-      }
-      100% {
-        opacity: 1;
-      }
-    }
-    @keyframes slide-in-left {
-      0% {
-        -webkit-transform: translateX(-100px);
-                transform: translateX(-100px);
-
-        opacity: 0;
-      }
-      75% {
-        -webkit-transform: translateX(0);
-                transform: translateX(0);
-      }
-      100% {
-        opacity: 1;
-      }
     }
   }
 }
@@ -360,4 +122,258 @@ $easings: (
 @mixin transition($time, $easing: linear, $delay: 0) {
   transition: -webkit-transform($time $delay easing($easing: $easing));
   transition: transform($time $delay easing($easing: $easing));
+}
+
+//Generates fade-in animation
+//Usage @include fade-in(1s, ease-in-out-sine, hover, 0.5s);
+
+@mixin fade-in($time, $easing: linear, $action: null, $delay: 0) {
+  @warn "Using @at-root sass 3.3 syntax libsass does not yet support";
+
+  @include ha;
+  @include action($action) {
+    -webkit-animation: fade-in $time $delay $easing;
+            animation: fade-in $time $delay $easing;
+  }
+
+  @at-root {
+    @-webkit-keyframes fade-in {
+      0% {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      };
+    }
+    @keyframes fade-in {
+      0% {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      };
+    }
+  }
+}
+//Generates fade-out animation
+//Usage @include fade-out(1s, ease-in-out-sine, hover, 0.5s);
+
+@mixin fade-out($time, $easing: linear, $action: null, $delay: 0) {
+  @warn "Using @at-root sass 3.3 syntax libsass does not yet support";
+
+  @include ha;
+  @include action($action) {
+    -webkit-animation: fade-out $time $delay $easing;
+            animation: fade-out $time $delay $easing;
+  }
+
+  @at-root {
+    @-webkit-keyframes fade-out {
+      0% {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      };
+    }
+    @keyframes fade-out {
+      0% {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      };
+    }
+  }
+}
+//Generates scale animation
+//Usage @include scale(1s, ease-in-out-sine, hover, 0.5, 0.5s);
+
+@mixin scale($time, $easing: linear, $action: null, $scale: 0.95, $delay: 0) {
+  @include ha;
+  @include transition($time, $easing, $delay);
+  @include action($action) {
+    -webkit-transform: scale($scale);
+            transform: scale($scale);
+  }
+}
+//Generates slide-in-down animation
+//Usage @include slide-in-down(1s, ease-in-out-sine, hover, 0.5s);
+
+@mixin slide-in-down($time, $easing: linear, $action: null, $delay: 0) {
+  @warn "Using @at-root sass 3.3 syntax libsass does not yet support";
+
+  @include ha;
+  @include action($action) {
+    -webkit-animation: slide-in-down $time $delay $easing;
+            animation: slide-in-down $time $delay $easing;
+  }
+
+  @at-root {
+    @-webkit-keyframes slide-in-down {
+      0% {
+        -webkit-transform: translateY(-100%);
+                transform: translateY(-100%);
+
+        opacity: 0;
+      }
+      75% {
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @keyframes slide-in-down {
+      0% {
+        -webkit-transform: translateY(-100%);
+                transform: translateY(-100%);
+
+        opacity: 0;
+      }
+      75% {
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+}
+//Generates slide-in-left animation
+//Usage @include slide-in-left(1s, ease-in-out-sine, hover, 0.5s);
+
+@mixin slide-in-left($time, $easing: linear, $action: null, $delay: 0) {
+  @warn "Using @at-root sass 3.3 syntax libsass does not yet support";
+
+  @include ha;
+  @include action($action) {
+    -webkit-animation: slide-in-left $time $delay $easing;
+            animation: slide-in-left $time $delay $easing;
+  }
+
+  @at-root {
+    @-webkit-keyframes slide-in-left {
+      0% {
+        -webkit-transform: translateX(-100px);
+                transform: translateX(-100px);
+
+        opacity: 0;
+      }
+      75% {
+        -webkit-transform: translateX(0);
+                transform: translateX(0);
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @keyframes slide-in-left {
+      0% {
+        -webkit-transform: translateX(-100px);
+                transform: translateX(-100px);
+
+        opacity: 0;
+      }
+      75% {
+        -webkit-transform: translateX(0);
+                transform: translateX(0);
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+}
+//Generates slide-in-right animation
+//Usage @include slide-in-right(1s, ease-in-out-sine, hover, 0.5s);
+
+@mixin slide-in-right($time, $easing: linear, $action: null, $delay: 0) {
+  @warn "Using @at-root sass 3.3 syntax libsass does not yet support";
+
+  @include ha;
+  @include action($action) {
+    -webkit-animation: slide-in-right $time $delay $easing;
+            animation: slide-in-right $time $delay $easing;
+  }
+
+  @at-root {
+    @-webkit-keyframes slide-in-right {
+      0% {
+        -webkit-transform: translateX(100px);
+                transform: translateX(100px);
+
+        opacity: 0;
+      }
+      75% {
+        -webkit-transform: translateX(0);
+                transform: translateX(0);
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @keyframes slide-in-right {
+      0% {
+        -webkit-transform: translateX(100px);
+                transform: translateX(100px);
+
+        opacity: 0;
+      }
+      75% {
+        -webkit-transform: translateX(0);
+                transform: translateX(0);
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+}
+//Generates slide-in-up animation
+//Usage @include slide-in-up(1s, ease-in-out-sine, hover, 0.5s);
+
+@mixin slide-in-up($time, $easing: linear, $action: null, $delay: 0) {
+  @warn "Using @at-root sass 3.3 syntax libsass does not yet support";
+
+  @include ha;
+  @include action($action) {
+    -webkit-animation: slide-in-up $time $delay $easing;
+            animation: slide-in-up $time $delay $easing;
+  }
+
+  @at-root {
+    @-webkit-keyframes slide-in-up {
+      0% {
+        -webkit-transform: translateY(100%);
+                transform: translateY(100%);
+
+        opacity: 0;
+      }
+      75% {
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @keyframes slide-in-up {
+      0% {
+        -webkit-transform: translateY(100%);
+                transform: translateY(100%);
+
+        opacity: 0;
+      }
+      75% {
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  }
 }
