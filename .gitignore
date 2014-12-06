@@ -1,7 +1,7 @@
-node_modules/
-.sass-cache/
 *.coffee
 *.js
 style.*
 *.html
 *.DS_Store
+node_modules/
+.sass-cache/
