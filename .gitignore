@@ -4,3 +4,4 @@ style.*
 *.html
 *.DS_Store
 node_modules/
+.sass-cache/

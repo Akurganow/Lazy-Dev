@@ -1,6 +1,6 @@
 //Warning: Using @at-root sass 3.3 syntax libsass does not yet support
 //
-//Generates transition
+//Generates animations
 //Usage @include scale(1s, ease-in-out-sine, hover, 0.5, 0.5s);
 
 @mixin action($action: null) {
@@ -247,6 +247,7 @@
     }
   }
 }
+
 //Generates media queries
 //Usage @include mq(960px, 2){ Put styles here }
 
@@ -300,6 +301,12 @@
     $i: $i + 1;
   }
 }
+
+//Warning: Using @at-root sass 3.3 syntax libsass does not yet support
+//
+//Generate Bizier curve
+//Usage easing(ease-in-out-sine);
+
 $easings: (
   linear: linear,
   ease-in: ease-in,
@@ -334,6 +341,7 @@ $easings: (
 @function easing($easing: linear) {
   @return map-get($easings, $easing);
 }
+
 //Generate hardware acceleration hack
 //Usage @include ha;
 

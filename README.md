@@ -27,8 +27,11 @@ $ bower install lazy-dev
 **Mixins:**
 
 - Clearfix
+- Hardware acceleration
+- Columns
 - Media Queries
 - Transition
+- Easings
 - Animations
     + Scale
     + Fade in

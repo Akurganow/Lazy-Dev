@@ -1,6 +1,6 @@
 //Warning: Using @at-root sass 3.3 syntax libsass does not yet support
 //
-//Generates transition
+//Generates animations
 //Usage @include scale(1s, ease-in-out-sine, hover, 0.5, 0.5s);
 
 @mixin action($action: null) {
