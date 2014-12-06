@@ -1,0 +1,24 @@
+//Generates media queries
+//Usage @include mq(960px, 2){ Put styles here }
+
+@mixin mq($width, $ratio) {
+  @media
+  only screen and (max-width: $width) and  (-webkit-min-device-pixel-ratio: $ratio),
+  only screen and (max-width: $width) and  (min-device-pixel-ratio: $ratio) {
+    @content;
+  }
+}
+
+@mixin mq-w($width) {
+  @media only screen and (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin mq-r($ratio) {
+  @media
+  only screen and (-webkit-min-device-pixel-ratio: $ratio),
+  only screen and (min-device-pixel-ratio: $ratio) {
+    @content;
+  }
+}
