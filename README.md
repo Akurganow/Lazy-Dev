@@ -2,7 +2,7 @@
 
 ### Installation
 
-Use Bower or Download [lazy-dev.scss](https://raw.githubusercontent.com/Akurganow/Lazy-Dev/master/lazy-dev.scss):
+Use Bower or Download [lazy-dev.scss](https://raw.githubusercontent.com/Akurganow/Lazy-Dev/master/lazy-dev.scss) or use one of [partial](https://github.com/Akurganow/Lazy-Dev/tree/master/partials):
 
 ```
 $ bower install lazy-dev
