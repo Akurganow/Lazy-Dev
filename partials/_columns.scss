@@ -5,6 +5,7 @@
   $i: 1;
   @while $i <= $count {
     .#{$class}#{$i} {
+      float: left;
       width: 100% / $count * $i;
     }
     $i: $i + 1;

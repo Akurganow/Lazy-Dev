@@ -4,6 +4,5 @@
 //Usage @include transition(1s, ease-in-out-sine, 0.5s);
 
 @mixin transition($time, $easing: linear, $delay: 0) {
-  transition: -webkit-transform($time $delay easing($easing: $easing));
-  transition: transform($time $delay easing($easing: $easing));
+  transition: $time $delay easing($easing: $easing);
 }

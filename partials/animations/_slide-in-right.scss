@@ -1,13 +1,12 @@
+//Warning: Using @at-root sass 3.3 syntax libsass does not yet support
 //Generates slide-in-right animation
 //Usage @include slide-in-right(1s, ease-in-out-sine, hover, 0.5s);
 
-@mixin slide-in-right($time, $easing: linear, $action: null, $delay: 0) {
-  @warn "Using @at-root sass 3.3 syntax libsass does not yet support";
-
+@mixin slide-in-right($time, $action: null, $easing: linear, $delay: 0) {
   @include ha;
   @include action($action) {
-    -webkit-animation: slide-in-right $time $delay $easing;
-            animation: slide-in-right $time $delay $easing;
+    -webkit-animation: slide-in-right $time $delay easing($easing);
+            animation: slide-in-right $time $delay easing($easing);
   }
 
   @at-root {

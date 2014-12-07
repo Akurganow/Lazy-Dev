@@ -60,6 +60,7 @@
   $i: 1;
   @while $i <= $count {
     .#{$class}#{$i} {
+      float: left;
       width: 100% / $count * $i;
     }
     $i: $i + 1;
@@ -120,20 +121,18 @@ $easings: (
 //Usage @include transition(1s, ease-in-out-sine, 0.5s);
 
 @mixin transition($time, $easing: linear, $delay: 0) {
-  transition: -webkit-transform($time $delay easing($easing: $easing));
-  transition: transform($time $delay easing($easing: $easing));
+  transition: $time $delay easing($easing: $easing);
 }
 
+//Warning: Using @at-root sass 3.3 syntax libsass does not yet support
 //Generates fade-in animation
 //Usage @include fade-in(1s, ease-in-out-sine, hover, 0.5s);
 
-@mixin fade-in($time, $easing: linear, $action: null, $delay: 0) {
-  @warn "Using @at-root sass 3.3 syntax libsass does not yet support";
-
+@mixin fade-in($time, $action: null, $easing: linear, $delay: 0) {
   @include ha;
   @include action($action) {
-    -webkit-animation: fade-in $time $delay $easing;
-            animation: fade-in $time $delay $easing;
+    -webkit-animation: fade-in $time $delay easing($easing);
+            animation: fade-in $time $delay easing($easing);
   }
 
   @at-root {
@@ -155,16 +154,15 @@ $easings: (
     }
   }
 }
+//Warning: Using @at-root sass 3.3 syntax libsass does not yet support
 //Generates fade-out animation
 //Usage @include fade-out(1s, ease-in-out-sine, hover, 0.5s);
 
-@mixin fade-out($time, $easing: linear, $action: null, $delay: 0) {
-  @warn "Using @at-root sass 3.3 syntax libsass does not yet support";
-
+@mixin fade-out($time, $action: null, $easing: linear, $delay: 0) {
   @include ha;
   @include action($action) {
-    -webkit-animation: fade-out $time $delay $easing;
-            animation: fade-out $time $delay $easing;
+    -webkit-animation: fade-out $time $delay easing($easing);
+            animation: fade-out $time $delay easing($easing);
   }
 
   @at-root {
@@ -189,7 +187,7 @@ $easings: (
 //Generates scale animation
 //Usage @include scale(1s, ease-in-out-sine, hover, 0.5, 0.5s);
 
-@mixin scale($time, $easing: linear, $action: null, $scale: 0.95, $delay: 0) {
+@mixin scale($time, $scale: 0.95, $action: null, $easing: linear, $delay: 0) {
   @include ha;
   @include transition($time, $easing, $delay);
   @include action($action) {
@@ -197,16 +195,15 @@ $easings: (
             transform: scale($scale);
   }
 }
+//Warning: Using @at-root sass 3.3 syntax libsass does not yet support
 //Generates slide-in-down animation
 //Usage @include slide-in-down(1s, ease-in-out-sine, hover, 0.5s);
 
-@mixin slide-in-down($time, $easing: linear, $action: null, $delay: 0) {
-  @warn "Using @at-root sass 3.3 syntax libsass does not yet support";
-
+@mixin slide-in-down($time, $action: null, $easing: linear, $delay: 0) {
   @include ha;
   @include action($action) {
-    -webkit-animation: slide-in-down $time $delay $easing;
-            animation: slide-in-down $time $delay $easing;
+    -webkit-animation: slide-in-down $time $delay easing($easing);
+            animation: slide-in-down $time $delay easing($easing);
   }
 
   @at-root {
@@ -242,16 +239,15 @@ $easings: (
     }
   }
 }
+//Warning: Using @at-root sass 3.3 syntax libsass does not yet support
 //Generates slide-in-left animation
 //Usage @include slide-in-left(1s, ease-in-out-sine, hover, 0.5s);
 
-@mixin slide-in-left($time, $easing: linear, $action: null, $delay: 0) {
-  @warn "Using @at-root sass 3.3 syntax libsass does not yet support";
-
+@mixin slide-in-left($time, $action: null, $easing: linear, $delay: 0) {
   @include ha;
   @include action($action) {
-    -webkit-animation: slide-in-left $time $delay $easing;
-            animation: slide-in-left $time $delay $easing;
+    -webkit-animation: slide-in-left $time $delay easing($easing);
+            animation: slide-in-left $time $delay easing($easing);
   }
 
   @at-root {
@@ -287,16 +283,15 @@ $easings: (
     }
   }
 }
+//Warning: Using @at-root sass 3.3 syntax libsass does not yet support
 //Generates slide-in-right animation
 //Usage @include slide-in-right(1s, ease-in-out-sine, hover, 0.5s);
 
-@mixin slide-in-right($time, $easing: linear, $action: null, $delay: 0) {
-  @warn "Using @at-root sass 3.3 syntax libsass does not yet support";
-
+@mixin slide-in-right($time, $action: null, $easing: linear, $delay: 0) {
   @include ha;
   @include action($action) {
-    -webkit-animation: slide-in-right $time $delay $easing;
-            animation: slide-in-right $time $delay $easing;
+    -webkit-animation: slide-in-right $time $delay easing($easing);
+            animation: slide-in-right $time $delay easing($easing);
   }
 
   @at-root {
@@ -332,16 +327,15 @@ $easings: (
     }
   }
 }
+//Warning: Using @at-root sass 3.3 syntax libsass does not yet support
 //Generates slide-in-up animation
 //Usage @include slide-in-up(1s, ease-in-out-sine, hover, 0.5s);
 
-@mixin slide-in-up($time, $easing: linear, $action: null, $delay: 0) {
-  @warn "Using @at-root sass 3.3 syntax libsass does not yet support";
-
+@mixin slide-in-up($time, $action: null, $easing: linear, $delay: 0) {
   @include ha;
   @include action($action) {
-    -webkit-animation: slide-in-up $time $delay $easing;
-            animation: slide-in-up $time $delay $easing;
+    -webkit-animation: slide-in-up $time $delay easing($easing);
+            animation: slide-in-up $time $delay easing($easing);
   }
 
   @at-root {
