@@ -7,9 +7,10 @@
   @include action($action) {
     -webkit-animation: fade-in-out $time $delay easing($easing);
             animation: fade-in-out $time $delay easing($easing);
-    -webkit-animation-fill-mode: $fill;
-  }
 
+    -webkit-animation-fill-mode: $fill;
+            animation-fill-mode: $fill;
+  }
   @at-root {
     @-webkit-keyframes fade-in-out {
       0% {

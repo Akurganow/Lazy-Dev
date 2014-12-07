@@ -7,7 +7,9 @@
   @include action($action) {
     -webkit-animation: fade-in $time $delay easing($easing);
             animation: fade-in $time $delay easing($easing);
+
     -webkit-animation-fill-mode: $fill;
+            animation-fill-mode: $fill;
   }
 
   @at-root {
