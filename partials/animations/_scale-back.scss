@@ -5,15 +5,15 @@
 @mixin scale-back($time, $scale: 0.95, $action: null, $easing: linear, $delay: 0, $fill: forwards) {
   @include ha;
   @include action($action) {
-    -webkit-animation: scale-back $time $delay easing($easing);
-            animation: scale-back $time $delay easing($easing);
+    -webkit-animation: scale-back-#{floor($scale * 1000)} $time $delay easing($easing);
+            animation: scale-back-#{floor($scale * 1000)} $time $delay easing($easing);
 
     -webkit-animation-fill-mode: $fill;
             animation-fill-mode: $fill;
   }
 
   @at-root {
-    @-webkit-keyframes scale-back {
+    @-webkit-keyframes scale-back-#{floor($scale * 1000)} {
       0% {
         -webkit-transform: scale(1);
             transform: scale(1);
@@ -27,7 +27,7 @@
             transform: scale(1);
       };
     }
-    @keyframes scale-back {
+    @keyframes scale-back-#{floor($scale * 1000)} {
       0% {
         -webkit-transform: scale(1);
             transform: scale(1);
