@@ -220,6 +220,48 @@ $easings: (
     }
   }
 }
+//Warning: Using @at-root sass 3.3 syntax libsass does not yet support
+//Generates scale-back animation
+//Usage @include scale-back(1s, ease-in-out-sine, hover, 0.5s);
+
+@mixin scale-back($time, $scale: 0.95, $action: null, $easing: linear, $delay: 0) {
+  @include ha;
+  @include action($action) {
+    -webkit-animation: scale-back $time $delay easing($easing);
+            animation: scale-back $time $delay easing($easing);
+  }
+
+  @at-root {
+    @-webkit-keyframes scale-back {
+      0% {
+        -webkit-transform: scale(1);
+            transform: scale(1);
+      }
+      50% {
+        -webkit-transform: scale($scale);
+            transform: scale($scale);
+      }
+      100% {
+        -webkit-transform: scale(1);
+            transform: scale(1);
+      };
+    }
+    @keyframes scale-back {
+      0% {
+        -webkit-transform: scale(1);
+            transform: scale(1);
+      }
+      50% {
+        -webkit-transform: scale($scale);
+            transform: scale($scale);
+      }
+      100% {
+        -webkit-transform: scale(1);
+            transform: scale(1);
+      };
+    }
+  }
+}
 //Generates scale animation
 //Usage @include scale(1s, ease-in-out-sine, hover, 0.5, 0.5s);
 
