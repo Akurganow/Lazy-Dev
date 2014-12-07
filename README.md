@@ -33,19 +33,18 @@ $ bower install lazy-dev
 - Transition
 - Easings
 - Animations
-    + Scale
-    + Fade in
-    + Fade out
-    + Slide in down
-    + Slide in up
-    + Slide in right
-    + Slide in left
+    + Scale (in, out)
+    + Fade (in , out)
+    + Slide in (down, up, right, left)
 
 **ToDo**
 
-- [ ] Replace mq with mobile first and desktop first named breakpoints
-- [ ] Slide out animations
-- [ ] 3d animations
-- [ ] More animations
-- [ ] Homepage
-- [ ] Examples
+- Replace mq with mobile first and desktop first named breakpoints
+- More out animations
+    + Scale in-out
+    + Fade in-out
+    + Slide out
+    + Slide in-out (?)
+    + 3d animations
+- Homepage
+- Examples
