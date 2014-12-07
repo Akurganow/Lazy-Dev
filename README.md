@@ -2,7 +2,7 @@
 
 ### Installation
 
-Use Bower or Download [lazy-dev.scss](https://raw.githubusercontent.com/Akurganow/Lazy-Dev/master/lazy-dev.scss) or use one of [partial](https://github.com/Akurganow/Lazy-Dev/tree/master/partials):
+Use Bower or Download [lazy-dev.scss](https://raw.githubusercontent.com/Akurganow/Lazy-Dev/master/lazy-dev.scss) or use one of [partials](https://github.com/Akurganow/Lazy-Dev/tree/master/partials):
 
 ```
 $ bower install lazy-dev
@@ -33,8 +33,8 @@ $ bower install lazy-dev
 - Transition
 - Easings
 - Animations
-    + Scale (in, out)
-    + Fade (in , out)
+    + Scale
+    + Fade (in , out, in-out)
     + Slide in (down, up, right, left)
 
 **ToDo**

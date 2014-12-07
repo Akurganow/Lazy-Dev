@@ -1,0 +1,36 @@
+//Warning: Using @at-root sass 3.3 syntax libsass does not yet support
+//Generates fade-out animation
+//Usage @include fade-in-out(1s, ease-in-out-sine, hover, 0.5s);
+
+@mixin fade-in-out($time, $action: null, $easing: linear, $delay: 0) {
+  @include ha;
+  @include action($action) {
+    -webkit-animation: fade-in-out $time $delay easing($easing);
+            animation: fade-in-out $time $delay easing($easing);
+  }
+
+  @at-root {
+    @-webkit-keyframes fade-in-out {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      };
+    }
+    @keyframes fade-in-out {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      };
+    }
+  }
+}
