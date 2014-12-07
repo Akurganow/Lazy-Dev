@@ -2,11 +2,12 @@
 //Generates slide-in-up animation
 //Usage @include slide-in-up(1s, ease-in-out-sine, hover, 0.5s);
 
-@mixin slide-in-up($time, $action: null, $easing: linear, $delay: 0) {
+@mixin slide-in-up($time, $action: null, $easing: linear, $delay: 0, $fill: forwards) {
   @include ha;
   @include action($action) {
     -webkit-animation: slide-in-up $time $delay easing($easing);
             animation: slide-in-up $time $delay easing($easing);
+    -webkit-animation-fill-mode: $fill;
   }
 
   @at-root {

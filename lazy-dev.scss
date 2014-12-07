@@ -128,11 +128,12 @@ $easings: (
 //Generates fade-out animation
 //Usage @include fade-in-out(1s, ease-in-out-sine, hover, 0.5s);
 
-@mixin fade-in-out($time, $action: null, $easing: linear, $delay: 0) {
+@mixin fade-in-out($time, $action: null, $easing: linear, $delay: 0, $fill: forwards) {
   @include ha;
   @include action($action) {
     -webkit-animation: fade-in-out $time $delay easing($easing);
             animation: fade-in-out $time $delay easing($easing);
+    -webkit-animation-fill-mode: $fill;
   }
 
   @at-root {
@@ -164,11 +165,12 @@ $easings: (
 //Generates fade-in animation
 //Usage @include fade-in(1s, ease-in-out-sine, hover, 0.5s);
 
-@mixin fade-in($time, $action: null, $easing: linear, $delay: 0) {
+@mixin fade-in($time, $action: null, $easing: linear, $delay: 0, $fill: forwards) {
   @include ha;
   @include action($action) {
     -webkit-animation: fade-in $time $delay easing($easing);
             animation: fade-in $time $delay easing($easing);
+    -webkit-animation-fill-mode: $fill;
   }
 
   @at-root {
@@ -194,11 +196,12 @@ $easings: (
 //Generates fade-out animation
 //Usage @include fade-out(1s, ease-in-out-sine, hover, 0.5s);
 
-@mixin fade-out($time, $action: null, $easing: linear, $delay: 0) {
+@mixin fade-out($time, $action: null, $easing: linear, $delay: 0, $fill: forwards) {
   @include ha;
   @include action($action) {
     -webkit-animation: fade-out $time $delay easing($easing);
             animation: fade-out $time $delay easing($easing);
+    -webkit-animation-fill-mode: $fill;
   }
 
   @at-root {
@@ -224,11 +227,12 @@ $easings: (
 //Generates scale-back animation
 //Usage @include scale-back(1s, ease-in-out-sine, hover, 0.5s);
 
-@mixin scale-back($time, $scale: 0.95, $action: null, $easing: linear, $delay: 0) {
+@mixin scale-back($time, $scale: 0.95, $action: null, $easing: linear, $delay: 0, $fill: forwards) {
   @include ha;
   @include action($action) {
     -webkit-animation: scale-back $time $delay easing($easing);
             animation: scale-back $time $delay easing($easing);
+    -webkit-animation-fill-mode: $fill;
   }
 
   @at-root {
@@ -277,11 +281,12 @@ $easings: (
 //Generates slide-in-down animation
 //Usage @include slide-in-down(1s, ease-in-out-sine, hover, 0.5s);
 
-@mixin slide-in-down($time, $action: null, $easing: linear, $delay: 0) {
+@mixin slide-in-down($time, $action: null, $easing: linear, $delay: 0, $fill: forwards) {
   @include ha;
   @include action($action) {
     -webkit-animation: slide-in-down $time $delay easing($easing);
             animation: slide-in-down $time $delay easing($easing);
+    -webkit-animation-fill-mode: $fill;
   }
 
   @at-root {
@@ -321,11 +326,12 @@ $easings: (
 //Generates slide-in-left animation
 //Usage @include slide-in-left(1s, ease-in-out-sine, hover, 0.5s);
 
-@mixin slide-in-left($time, $action: null, $easing: linear, $delay: 0) {
+@mixin slide-in-left($time, $action: null, $easing: linear, $delay: 0, $fill: forwards) {
   @include ha;
   @include action($action) {
     -webkit-animation: slide-in-left $time $delay easing($easing);
             animation: slide-in-left $time $delay easing($easing);
+    -webkit-animation-fill-mode: $fill;
   }
 
   @at-root {
@@ -365,11 +371,12 @@ $easings: (
 //Generates slide-in-right animation
 //Usage @include slide-in-right(1s, ease-in-out-sine, hover, 0.5s);
 
-@mixin slide-in-right($time, $action: null, $easing: linear, $delay: 0) {
+@mixin slide-in-right($time, $action: null, $easing: linear, $delay: 0, $fill: forwards) {
   @include ha;
   @include action($action) {
     -webkit-animation: slide-in-right $time $delay easing($easing);
             animation: slide-in-right $time $delay easing($easing);
+    -webkit-animation-fill-mode: $fill;
   }
 
   @at-root {
@@ -409,11 +416,12 @@ $easings: (
 //Generates slide-in-up animation
 //Usage @include slide-in-up(1s, ease-in-out-sine, hover, 0.5s);
 
-@mixin slide-in-up($time, $action: null, $easing: linear, $delay: 0) {
+@mixin slide-in-up($time, $action: null, $easing: linear, $delay: 0, $fill: forwards) {
   @include ha;
   @include action($action) {
     -webkit-animation: slide-in-up $time $delay easing($easing);
             animation: slide-in-up $time $delay easing($easing);
+    -webkit-animation-fill-mode: $fill;
   }
 
   @at-root {

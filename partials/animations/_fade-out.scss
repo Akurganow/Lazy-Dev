@@ -2,11 +2,12 @@
 //Generates fade-out animation
 //Usage @include fade-out(1s, ease-in-out-sine, hover, 0.5s);
 
-@mixin fade-out($time, $action: null, $easing: linear, $delay: 0) {
+@mixin fade-out($time, $action: null, $easing: linear, $delay: 0, $fill: forwards) {
   @include ha;
   @include action($action) {
     -webkit-animation: fade-out $time $delay easing($easing);
             animation: fade-out $time $delay easing($easing);
+    -webkit-animation-fill-mode: $fill;
   }
 
   @at-root {

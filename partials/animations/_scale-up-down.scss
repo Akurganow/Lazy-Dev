@@ -2,11 +2,12 @@
 //Generates scale-back animation
 //Usage @include scale-back(1s, ease-in-out-sine, hover, 0.5s);
 
-@mixin scale-back($time, $scale: 0.95, $action: null, $easing: linear, $delay: 0) {
+@mixin scale-back($time, $scale: 0.95, $action: null, $easing: linear, $delay: 0, $fill: forwards) {
   @include ha;
   @include action($action) {
     -webkit-animation: scale-back $time $delay easing($easing);
             animation: scale-back $time $delay easing($easing);
+    -webkit-animation-fill-mode: $fill;
   }
 
   @at-root {
