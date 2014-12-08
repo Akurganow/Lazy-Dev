@@ -1,0 +1,475 @@
+//Generates action mixin
+//Usage @include action(hover) { ... };
+
+@mixin action($action: null) {
+  @if $action == null {
+    @content;
+  }
+  @else {
+    &:#{$action} {
+      @content;
+    }
+  }
+}
+
+//Generates media queries
+//Usage @include mq(960px, 2){ Put styles here }
+
+@mixin mq($width, $ratio) {
+  @media
+  only screen and (max-width: $width) and  (-webkit-min-device-pixel-ratio: $ratio),
+  only screen and (max-width: $width) and  (min-device-pixel-ratio: $ratio) {
+    @content;
+  }
+}
+
+@mixin mq-w($width) {
+  @media only screen and (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin mq-r($ratio) {
+  @media
+  only screen and (-webkit-min-device-pixel-ratio: $ratio),
+  only screen and (min-device-pixel-ratio: $ratio) {
+    @content;
+  }
+}
+
+//Generates clearfix hack
+//Usage @include clearfix;
+
+@mixin clearfix {
+  *zoom: 1;
+  &:before, &:after {
+    display: table;
+
+    content: ' ';
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+//Generates columns
+//Usage @include columns(class, 3);
+
+@mixin columns($class: col, $count: 12) {
+  $i: 1;
+  @while $i <= $count {
+    .#{$class}#{$i} {
+      float: left;
+      width: 100% / $count * $i;
+    }
+    $i: $i + 1;
+  }
+}
+
+//Warning: Using @at-root sass 3.3 syntax libsass does not yet support
+//
+//Generate Bizier curve
+//Usage easing(ease-in-out-sine);
+
+$easings: (
+  linear: linear,
+  ease-in: ease-in,
+  ease-out: ease-out,
+  ease-in-out: ease-in-out,
+  ease-in-sine: cubic-bezier(0.47, 0, 0.745, 0.715),
+  ease-out-sine: cubic-bezier(0.39, 0.575, 0.565, 1),
+  ease-in-out-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95),
+  ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53),
+  ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94),
+  ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955),
+  ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19),
+  ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1),
+  ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1),
+  ease-in-quart: cubic-bezier(0.895, 0.03, 0.685, 0.22),
+  ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1),
+  ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1),
+  ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06),
+  ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1),
+  ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1),
+  ease-in-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035),
+  ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1),
+  ease-in-out-expo: cubic-bezier(1, 0, 0, 1),
+  ease-in-circ: cubic-bezier(0.6, 0.04, 0.98, 0.335),
+  ease-out-circ: cubic-bezier(0.075, 0.82, 0.165, 1),
+  ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86),
+  ease-in-back: cubic-bezier(0.6, -0.28, 0.735, 0.045),
+  ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275),
+  ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55)
+);
+
+@function easing($easing: linear) {
+  @return map-get($easings, $easing);
+}
+
+//Generate hardware acceleration hack
+//Usage @include ha;
+
+@mixin ha {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+
+//Warning: Using @at-root sass 3.3 syntax libsass does not yet support
+//
+//Generates transition
+//Usage @include transition(1s, ease-in-out-sine, 0.5s);
+
+@mixin transition($time, $easing: linear, $delay: 0) {
+  transition: $time $delay easing($easing: $easing);
+}
+
+//Warning: Using @at-root sass 3.3 syntax libsass does not yet support
+//Generates fade-out animation
+//Usage @include fade-in-out(1s, ease-in-out-sine, hover, 0.5s);
+
+@mixin fade-in-out($time, $action: null, $easing: linear, $delay: 0, $fill: forwards) {
+  @include ha;
+  @include action($action) {
+    -webkit-animation: fade-in-out $time $delay easing($easing);
+            animation: fade-in-out $time $delay easing($easing);
+
+    -webkit-animation-fill-mode: $fill;
+            animation-fill-mode: $fill;
+  }
+  @at-root {
+    @-webkit-keyframes fade-in-out {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      };
+    }
+    @keyframes fade-in-out {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      };
+    }
+  }
+}
+
+//Warning: Using @at-root sass 3.3 syntax libsass does not yet support
+//Generates fade-in animation
+//Usage @include fade-in(1s, ease-in-out-sine, hover, 0.5s);
+
+@mixin fade-in($time, $action: null, $easing: linear, $delay: 0, $fill: forwards) {
+  @include ha;
+  @include action($action) {
+    -webkit-animation: fade-in $time $delay easing($easing);
+            animation: fade-in $time $delay easing($easing);
+
+    -webkit-animation-fill-mode: $fill;
+            animation-fill-mode: $fill;
+  }
+
+  @at-root {
+    @-webkit-keyframes fade-in {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      };
+    }
+    @keyframes fade-in {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      };
+    }
+  }
+}
+//Warning: Using @at-root sass 3.3 syntax libsass does not yet support
+//Generates fade-out animation
+//Usage @include fade-out(1s, ease-in-out-sine, hover, 0.5s);
+
+@mixin fade-out($time, $action: null, $easing: linear, $delay: 0, $fill: forwards) {
+  @include ha;
+  @include action($action) {
+    -webkit-animation: fade-out $time $delay easing($easing);
+            animation: fade-out $time $delay easing($easing);
+
+    -webkit-animation-fill-mode: $fill;
+            animation-fill-mode: $fill;
+  }
+
+  @at-root {
+    @-webkit-keyframes fade-out {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      };
+    }
+    @keyframes fade-out {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      };
+    }
+  }
+}
+//Warning: Using @at-root sass 3.3 syntax libsass does not yet support
+//Generates scale-back animation
+//Usage @include scale-back(1s, ease-in-out-sine, hover, 0.5s);
+
+@mixin scale-back($time, $scale: 0.95, $action: null, $easing: linear, $delay: 0, $fill: forwards) {
+  @include ha;
+  @include action($action) {
+    -webkit-animation: scale-back-#{floor($scale * 1000)} $time $delay easing($easing);
+            animation: scale-back-#{floor($scale * 1000)} $time $delay easing($easing);
+
+    -webkit-animation-fill-mode: $fill;
+            animation-fill-mode: $fill;
+  }
+
+  @at-root {
+    @-webkit-keyframes scale-back-#{floor($scale * 1000)} {
+      0% {
+        -webkit-transform: scale(1);
+            transform: scale(1);
+      }
+      50% {
+        -webkit-transform: scale($scale);
+            transform: scale($scale);
+      }
+      100% {
+        -webkit-transform: scale(1);
+            transform: scale(1);
+      };
+    }
+    @keyframes scale-back-#{floor($scale * 1000)} {
+      0% {
+        -webkit-transform: scale(1);
+            transform: scale(1);
+      }
+      50% {
+        -webkit-transform: scale($scale);
+            transform: scale($scale);
+      }
+      100% {
+        -webkit-transform: scale(1);
+            transform: scale(1);
+      };
+    }
+  }
+}
+//Generates scale animation
+//Usage @include scale(1s, ease-in-out-sine, hover, 0.5, 0.5s);
+
+@mixin scale($time, $scale: 0.95, $action: null, $easing: linear, $delay: 0) {
+  @include ha;
+  @include transition($time, $easing, $delay);
+  @include action($action) {
+    -webkit-transform: scale($scale);
+            transform: scale($scale);
+  }
+}
+//Warning: Using @at-root sass 3.3 syntax libsass does not yet support
+//Generates slide-in-down animation
+//Usage @include slide-in-down(1s, ease-in-out-sine, hover, 0.5s);
+
+@mixin slide-in-down($time, $action: null, $easing: linear, $delay: 0, $fill: forwards) {
+  @include ha;
+  @include action($action) {
+    -webkit-animation: slide-in-down $time $delay easing($easing);
+            animation: slide-in-down $time $delay easing($easing);
+
+    -webkit-animation-fill-mode: $fill;
+            animation-fill-mode: $fill;
+  }
+
+  @at-root {
+    @-webkit-keyframes slide-in-down {
+      0% {
+        -webkit-transform: translateY(-100%);
+                transform: translateY(-100%);
+
+        opacity: 0;
+      }
+      75% {
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @keyframes slide-in-down {
+      0% {
+        -webkit-transform: translateY(-100%);
+                transform: translateY(-100%);
+
+        opacity: 0;
+      }
+      75% {
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+}
+//Warning: Using @at-root sass 3.3 syntax libsass does not yet support
+//Generates slide-in-left animation
+//Usage @include slide-in-left(1s, ease-in-out-sine, hover, 0.5s);
+
+@mixin slide-in-left($time, $action: null, $easing: linear, $delay: 0, $fill: forwards) {
+  @include ha;
+  @include action($action) {
+    -webkit-animation: slide-in-left $time $delay easing($easing);
+            animation: slide-in-left $time $delay easing($easing);
+
+    -webkit-animation-fill-mode: $fill;
+            animation-fill-mode: $fill;
+  }
+
+  @at-root {
+    @-webkit-keyframes slide-in-left {
+      0% {
+        -webkit-transform: translateX(-100px);
+                transform: translateX(-100px);
+
+        opacity: 0;
+      }
+      75% {
+        -webkit-transform: translateX(0);
+                transform: translateX(0);
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @keyframes slide-in-left {
+      0% {
+        -webkit-transform: translateX(-100px);
+                transform: translateX(-100px);
+
+        opacity: 0;
+      }
+      75% {
+        -webkit-transform: translateX(0);
+                transform: translateX(0);
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+}
+//Warning: Using @at-root sass 3.3 syntax libsass does not yet support
+//Generates slide-in-right animation
+//Usage @include slide-in-right(1s, ease-in-out-sine, hover, 0.5s);
+
+@mixin slide-in-right($time, $action: null, $easing: linear, $delay: 0, $fill: forwards) {
+  @include ha;
+  @include action($action) {
+    -webkit-animation: slide-in-right $time $delay easing($easing);
+            animation: slide-in-right $time $delay easing($easing);
+
+    -webkit-animation-fill-mode: $fill;
+            animation-fill-mode: $fill;
+  }
+
+  @at-root {
+    @-webkit-keyframes slide-in-right {
+      0% {
+        -webkit-transform: translateX(100px);
+                transform: translateX(100px);
+
+        opacity: 0;
+      }
+      75% {
+        -webkit-transform: translateX(0);
+                transform: translateX(0);
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @keyframes slide-in-right {
+      0% {
+        -webkit-transform: translateX(100px);
+                transform: translateX(100px);
+
+        opacity: 0;
+      }
+      75% {
+        -webkit-transform: translateX(0);
+                transform: translateX(0);
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+}
+//Warning: Using @at-root sass 3.3 syntax libsass does not yet support
+//Generates slide-in-up animation
+//Usage @include slide-in-up(1s, ease-in-out-sine, hover, 0.5s);
+
+@mixin slide-in-up($time, $action: null, $easing: linear, $delay: 0, $fill: forwards) {
+  @include ha;
+  @include action($action) {
+    -webkit-animation: slide-in-up $time $delay easing($easing);
+            animation: slide-in-up $time $delay easing($easing);
+
+    -webkit-animation-fill-mode: $fill;
+            animation-fill-mode: $fill;
+  }
+
+  @at-root {
+    @-webkit-keyframes slide-in-up {
+      0% {
+        -webkit-transform: translateY(100%);
+                transform: translateY(100%);
+
+        opacity: 0;
+      }
+      75% {
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @keyframes slide-in-up {
+      0% {
+        -webkit-transform: translateY(100%);
+                transform: translateY(100%);
+
+        opacity: 0;
+      }
+      75% {
+        -webkit-transform: translateY(0);
+                transform: translateY(0);
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+}
