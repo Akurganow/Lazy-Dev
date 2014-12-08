@@ -1,7 +1,7 @@
 nav {
   color: #fff;
   @extend .z-depth-1;
-  background-color: color("materialize-red", "lighten-2");
+  background-color: color("teal", "lighten-2");
   width: 100%;
   height: 56px;
   line-height: 56px;
@@ -37,7 +37,6 @@ nav {
 //      position: absolute;
 //      right: 0;
       width: 100%;
-      text-align: center;
       z-index: 0;
     }
 
@@ -57,7 +56,7 @@ nav {
       transition: background-color .3s;
 
       &:hover, &.active {
-        background-color: color("materialize-red", "lighten-1");
+        background-color: color("teal", "lighten-3");
       }
     }
     a { 

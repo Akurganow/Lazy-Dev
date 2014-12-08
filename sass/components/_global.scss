@@ -27,7 +27,7 @@ ul {
 }
 
 a {
-	color: color("blue", "darken-1");
+	color: color("teal", "darken-1");
 	text-decoration: none;
 }
 p {
@@ -103,7 +103,7 @@ $num-cols: 12;
 blockquote {
   margin: 20px 0;
   padding-left: 1.5rem;
-  border-left: 5px solid color("red", "lighten-3");
+  border-left: 5px solid color("teal", "lighten-3");
 }
 
 
@@ -228,7 +228,7 @@ table {
   &.hoverable {
       
     tbody tr {
-      @include transition(background-color .25s ease);
+      transition: background-color .25s ease;
       &:hover {
         background-color: #f2f2f2;
       }
@@ -273,7 +273,7 @@ td, th{
   
   a.collection-item{
     display: block;
-    @include transition(.25s);
+    transition: .25s;
     &:not(.active) {
       &:hover {
         background-color: #f2f2f2;
@@ -321,11 +321,11 @@ td, th{
        padding: 0px 5px; 
       }
       &.active {
-        background-color: color('light-blue', 'base'); 
+        background-color: color('teal', 'base'); 
         color: #FFF;
       }
       &:hover {
-        background-color: color('light-blue', 'lighten-5');
+        background-color: color('teal', 'lighten-5');
       }
     }
     
