@@ -12,7 +12,7 @@ $ bower install lazy-dev
 
 ### How to use
 
-```
+```scss
 @include mq(960px, 2) {
     .some-class {
         width: 960px;
